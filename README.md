@@ -52,7 +52,7 @@ graph LR
 
 ```
 src/
-<<<<<<< HEAD
+
   api/          client.js — talks to the Express backend
   components/
     board/       Board, Column, TaskCard, TaskModal
@@ -72,7 +72,6 @@ src/
 ## 🚀 How to Run (Setup Instructions)
 
 
-<<<<<<< HEAD
 This app needs the backend running first.
 
 1. In a separate terminal, start the API (see `syncboard-server/README.md`):
@@ -99,12 +98,12 @@ npm run dev
 ```
 
 Then open the printed local URL (typically `http://localhost:5173`).
->>>>>>> d9d32c54731e46abd37f9a44f738c5b8be04c345
+
 
 ## Pages
 
 1. **Login** — entry screen (decorative form, no auth wired yet)
-<<<<<<< HEAD
+
 2. **Dashboard** — fetches `/api/boards`, shows progress bars per board
 3. **Board** — fetches `/api/boards/:id` and `/api/boards/:id/columns`, renders
    To Do / Doing / Done columns with task cards. Fully interactive:
