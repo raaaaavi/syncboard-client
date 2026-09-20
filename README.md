@@ -50,7 +50,6 @@ graph LR
     end
 ## Project structure
 
-```
 src/
 
   api/          client.js — talks to the Express backend
