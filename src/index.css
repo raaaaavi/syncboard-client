@@ -1,0 +1,38 @@
+:root {
+  --bg: #F5F4EF;
+  --surface: #FFFFFF;
+  --surface-alt: #ECEAE2;
+  --ink: #181A22;
+  --ink-soft: #666A79;
+  --ink-faint: #9C9FAC;
+  --border: #E2DFD5;
+  --indigo: #3E3AE8;
+  --indigo-deep: #2B27B8;
+  --indigo-soft: #ECEBFD;
+  --teal: #0E9C8E;
+  --teal-soft: #E1F5F2;
+  --amber: #DB8A0C;
+  --amber-soft: #FBF0DA;
+  --coral: #DE5147;
+  --coral-soft: #FBE7E5;
+
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+button { font-family: var(--font-body); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
