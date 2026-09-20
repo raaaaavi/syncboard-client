@@ -48,21 +48,85 @@ graph LR
     subgraph Database [MongoDB Atlas]
         Models -- Read/Write --> DB[(MongoDB Cluster)]
     end
+## Project structure
+
+```
+src/
+<<<<<<< HEAD
+  api/          client.js — talks to the Express backend
+  components/
+    board/       Board, Column, TaskCard, TaskModal
+    common/       Avatar, Badge, SyncPulse
+    layout/       Navbar, Sidebar
+  pages/         LoginPage, DashboardPage, BoardPage
+  data/          mockData.js (superseded — kept for reference only, see note in file)
+  utils/         helpers.js
+=======
+  components/
+    board/     Board, Column, TaskCard, TaskModal
+    common/     Avatar, Badge, SyncPulse
+    layout/     Navbar, Sidebar
+  pages/        LoginPage, DashboardPage, BoardPage
+  data/         mockData.js (boards, team, columns, tasks)
+  utils/        helpers.js
 ## 🚀 How to Run (Setup Instructions)
 
-This application consists of a decoupled client and server. **The backend API must be running first** for the frontend to display data.
 
-### Prerequisites
-- Node.js (v18 or later recommended)
-- npm (Node Package Manager)
-- A MongoDB Atlas Free Tier (M0) cluster (for the backend)
+<<<<<<< HEAD
+This app needs the backend running first.
 
----
-
-### Step 1: Start the Backend (syncboard-server)
-The Express API must be running on port `5000` to serve data to the React client.
-
-1. Open a terminal and clone the backend repository:
+1. In a separate terminal, start the API (see `syncboard-server/README.md`):
    ```bash
-   git clone [https://github.com/raaaaavi/syncboard-server.git](https://github.com/raaaaavi/syncboard-server.git)
-   cd syncboard-server
+   cd ../syncboard-server
+   npm install
+   npm run dev
+   # -> http://localhost:5000
+   ```
+2. Then, in this folder:
+   ```bash
+   cp .env.example .env   # points VITE_API_URL at http://localhost:5000
+   npm install
+   npm run dev
+   ```
+3. Open the printed local URL (typically `http://localhost:5173`).
+
+If the Dashboard or Board page shows a red "Couldn't reach the API" message,
+the backend isn't running or `VITE_API_URL` doesn't match its port.
+=======
+```bash
+npm install
+npm run dev
+```
+
+Then open the printed local URL (typically `http://localhost:5173`).
+>>>>>>> d9d32c54731e46abd37f9a44f738c5b8be04c345
+
+## Pages
+
+1. **Login** — entry screen (decorative form, no auth wired yet)
+<<<<<<< HEAD
+2. **Dashboard** — fetches `/api/boards`, shows progress bars per board
+3. **Board** — fetches `/api/boards/:id` and `/api/boards/:id/columns`, renders
+   To Do / Doing / Done columns with task cards. Fully interactive:
+   - **+** on a column header opens an inline form to create a task (`POST /api/tasks`)
+   - the ‹ › arrows on a card move it to the previous/next column (`PATCH /api/tasks/:id/move`)
+   - opening a card shows **Move to** buttons and a **Delete** button (`DELETE /api/tasks/:id`)
+
+   Every action re-fetches from the database afterwards, so what you see always reflects
+   what's actually stored in MongoDB Atlas — not local component state.
+4. **Starred** — same board grid, filtered to boards you've starred (`PATCH /api/boards/:id/star`
+   toggles it from either this page or the Dashboard)
+5. **Team** — fetches `/api/team`, and computes each member's open-task count live by
+   reading every board's columns (not a hardcoded number)
+6. **Settings** — shows the connected API URL, plus a working **Sign out** button
+
+## Other working controls
+
+- **Search** (navbar) — filters boards by name on Dashboard/Starred, and filters tasks
+  by title on the Board page, live as you type
+- **New board** (Dashboard) — inline form, calls `POST /api/boards`, which also seeds
+  the new board with default To Do / Doing / Done columns server-side
+- **Filter** (Board page) — dropdown of every tag present on the board; toggle tags to
+  narrow the columns down to matching tasks
+- **Bell / activity** (navbar) — a real, session-local activity log: every create, move,
+  delete, and star action appends an entry here
